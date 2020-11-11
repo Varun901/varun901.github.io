@@ -375,7 +375,7 @@ TxtType.prototype.tick = function() {
 	this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
 
 	var that = this;
-	var delta = 200 - Math.random() * 100;
+	var delta = 100 - Math.random() * 100; //change delta for time
 
 	if (this.isDeleting) { delta /= 2; }
 
