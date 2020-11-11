@@ -385,7 +385,7 @@ TxtType.prototype.tick = function() {
 	} else if (this.isDeleting && this.txt === '') {
 	this.isDeleting = false;
 	this.loopNum++;
-	delta = 350;
+	delta = 500;
 	}
 
 	setTimeout(function() {
