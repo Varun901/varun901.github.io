@@ -9443,3 +9443,7 @@ textarea.form-control {
 
 #projects-section .col-md-4 {
   margin-bottom: 1.5rem; }
+
+.project-award {
+  color: #e08a00;
+  font-weight: 600; }
