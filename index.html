@@ -411,12 +411,31 @@
     (function () {
       var ORCID_ID = '0000-0002-1366-9331';
 
+      // Publications not in ORCID (e.g. institutional repository works without a DOI)
+      var STATIC_WORKS = [
+        {
+          title:   'Investigating the Impact of a Mindfulness Intervention on Rumination Patterns via a Source Imaging Approach',
+          journal: 'McMaster University',
+          year:    '2023',
+          type:    'student-publication',
+          doiUrl:  'https://macsphere.mcmaster.ca/items/21078084-d453-42d3-8bb9-4f3f67ffa80d'
+        },
+        {
+          title:   'Investigating the Influence of Handedness on EMG Movement Features \u2013 A Frequency-Based Analysis',
+          journal: 'McMaster University',
+          year:    '2022',
+          type:    'student-publication',
+          doiUrl:  'https://macsphere.mcmaster.ca/items/300aff2a-81fd-43c5-a6d7-ab33da5e0f78'
+        }
+      ];
+
       var TYPE_LABELS = {
-        'journal-article':     'Journal Article',
-        'conference-paper':    'Conference Paper',
-        'conference-abstract': 'Conference Abstract',
-        'preprint':            'Preprint',
-        'other':               'Other'
+        'journal-article':      'Journal Article',
+        'conference-paper':     'Conference Paper',
+        'conference-abstract':  'Conference Abstract',
+        'preprint':             'Preprint',
+        'student-publication':  'Student Publication',
+        'other':                'Other'
       };
 
       function typeLabel(type) {
@@ -459,6 +478,13 @@
           if (isPreprintDOI(doi)) type = 'preprint';
           return { title: title, journal: journal, year: year, type: type, doiUrl: doiUrl };
         }).filter(Boolean);
+
+        // Merge static works, deduplicating by title
+        var seenTitles = {};
+        works.forEach(function(w) { seenTitles[w.title.toLowerCase()] = true; });
+        STATIC_WORKS.forEach(function(w) {
+          if (!seenTitles[w.title.toLowerCase()]) works.push(w);
+        });
 
         works.sort(function(a, b) {
           return (parseInt(b.year) || 0) - (parseInt(a.year) || 0);

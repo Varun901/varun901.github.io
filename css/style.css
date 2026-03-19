@@ -9378,6 +9378,10 @@ textarea.form-control {
   color: #999;
   border-color: #ccc; }
 
+.publication-tag--student-publication {
+  color: #7b5ea7;
+  border-color: #7b5ea7; }
+
 /* ============================================================
    Projects Section
    ============================================================ */
