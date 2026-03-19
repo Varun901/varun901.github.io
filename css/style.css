@@ -9314,3 +9314,140 @@ textarea.form-control {
     -moz-box-shadow: 0 0 0 0 rgba(23, 185, 120, 0);
     -webkit-box-shadow: 0 0 0 0 rgba(23, 185, 120, 0);
     box-shadow: 0 0 0 0 rgba(23, 185, 120, 0); } }
+
+/* ============================================================
+   Publications Section
+   ============================================================ */
+.publication-item {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid #eee; }
+
+.publication-item:last-child {
+  border-bottom: none; }
+
+.publication-title {
+  font-family: 'Raleway', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #263b5e;
+  line-height: 1.5; }
+
+.publication-title a {
+  color: #263b5e;
+  transition: color .2s ease; }
+
+.publication-title a:hover {
+  color: #17b978; }
+
+.publication-meta {
+  font-size: 0.875rem;
+  color: #6a7695; }
+
+.publication-journal {
+  font-style: italic; }
+
+.publication-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem; }
+
+.publication-tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 3px;
+  border: 1px solid transparent; }
+
+.publication-tag--journal-article {
+  color: #17b978;
+  border-color: #17b978; }
+
+.publication-tag--conference-paper,
+.publication-tag--conference-abstract {
+  color: #4a90d9;
+  border-color: #4a90d9; }
+
+.publication-tag--preprint {
+  color: #e08a00;
+  border-color: #e08a00; }
+
+.publication-tag--preprint-note {
+  color: #999;
+  border-color: #ccc; }
+
+.publication-tag--student-publication {
+  color: #7b5ea7;
+  border-color: #7b5ea7; }
+
+/* ============================================================
+   Projects Section
+   ============================================================ */
+.project-card {
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  transition: transform .25s ease, box-shadow .25s ease;
+  display: flex;
+  flex-direction: column; }
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1); }
+
+.project-overline {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #17b978;
+  margin-bottom: 0.5rem; }
+
+.project-title {
+  font-family: 'Raleway', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #263b5e; }
+
+.project-title a {
+  color: #263b5e;
+  transition: color .2s ease; }
+
+.project-title a:hover {
+  color: #17b978; }
+
+.project-description {
+  font-size: 0.9rem;
+  color: #6a7695;
+  line-height: 1.7; }
+
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: auto; }
+
+.project-tech li {
+  font-size: 0.78rem;
+  font-family: 'Courier New', monospace;
+  color: #6a7695; }
+
+.project-links {
+  font-size: 1.1rem; }
+
+.project-links a {
+  color: #6a7695;
+  margin-right: 0.75rem;
+  transition: color .2s ease; }
+
+.project-links a:hover {
+  color: #17b978; }
+
+#projects-section .col-md-4 {
+  margin-bottom: 1.5rem; }
+
+.project-award {
+  color: #e08a00;
+  font-weight: 600; }
