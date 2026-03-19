@@ -9166,7 +9166,10 @@ textarea.form-control {
   color: #ff0202; }
 
 .contact-section .contact-form {
-  width: 100%; }
+  width: 100%;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07); }
   @media (max-width: 767.98px) {
     .contact-section .contact-form .btn-primary {
       display: block;
@@ -9367,7 +9370,8 @@ textarea.form-control {
   border-color: #17b978; }
 
 .publication-tag--journal-abstract {
-  color: #3a9abf;
+  color: #2980a8;
+  background-color: rgba(58, 154, 191, 0.1);
   border-color: #3a9abf; }
 
 .publication-tag--conference-paper,
