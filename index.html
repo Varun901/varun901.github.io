@@ -224,8 +224,8 @@
           </div>
         </div>
 
-        <div class="row no-gutters block-9">
-          <div class="col-md-8 offset-md-2">
+        <div class="row justify-content-center block-9">
+          <div class="col-md-8">
             <form action="https://formspree.io/f/xdopdkgk" method="POST" class="bg-light p-4 p-md-5 contact-form">
               <div class="form-group">
                 <input type="text" name="name" class="form-control" placeholder="Your Name">
@@ -337,11 +337,17 @@
 
       var TYPE_LABELS = {
         'journal-article':      'Journal Article',
+        'journal-abstract':     'Journal Abstract',
         'conference-paper':     'Conference Paper',
         'conference-abstract':  'Conference Abstract',
         'preprint':             'Preprint',
         'student-publication':  'Student Publication',
         'other':                'Other'
+      };
+
+      // Override the ORCID-reported type for specific works (keyed by DOI, lowercase).
+      var DOI_TYPE_OVERRIDES = {
+        '10.1302/1358-992x.2026.1.043': 'journal-abstract'
       };
 
       function typeLabel(type) {
@@ -382,6 +388,7 @@
           });
 
           if (isPreprintDOI(doi)) type = 'preprint';
+          if (doi && DOI_TYPE_OVERRIDES[doi.toLowerCase()]) type = DOI_TYPE_OVERRIDES[doi.toLowerCase()];
           return { title: title, journal: journal, year: year, type: type, doiUrl: doiUrl };
         }).filter(Boolean);
 

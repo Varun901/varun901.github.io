@@ -9330,7 +9330,8 @@ textarea.form-control {
   font-size: 1rem;
   font-weight: 600;
   color: #263b5e;
-  line-height: 1.5; }
+  line-height: 1.5;
+  text-align: justify; }
 
 .publication-title a {
   color: #263b5e;
@@ -9364,6 +9365,10 @@ textarea.form-control {
 .publication-tag--journal-article {
   color: #17b978;
   border-color: #17b978; }
+
+.publication-tag--journal-abstract {
+  color: #3a9abf;
+  border-color: #3a9abf; }
 
 .publication-tag--conference-paper,
 .publication-tag--conference-abstract {
