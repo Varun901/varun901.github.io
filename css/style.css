@@ -8596,7 +8596,7 @@ h1, h2, h3, h4, h5,
     z-index: 1; }
 
 .ftco-about p {
-  text-align: justify; }
+  text-align: justify !important; }
 
 .ftco-about .text-about h4 {
   font-size: 20px;
@@ -9374,6 +9374,7 @@ textarea.form-control {
 
 .publication-tag--journal-abstract {
   color: #2980a8;
+  background-color: transparent !important;
   border-color: #3a9abf; }
 
 .publication-tag--conference-paper,
