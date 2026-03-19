@@ -237,15 +237,32 @@ TxtType.prototype.tick = function() {
 
 window.onload = function() {
 	var elements = document.getElementsByClassName('typewrite');
+	// On mobile (< 768px) the animation causes the h1 to switch between 1 and
+	// 2+ lines as text grows, which makes the buttons below it jump up and down.
+	// Showing the first phrase as static text eliminates the movement entirely
+	// while keeping the full typewriter effect on desktop.
+	var isMobile = window.innerWidth < 768;
+
 	for (var i=0; i<elements.length; i++) {
 		var toRotate = elements[i].getAttribute('data-type');
 		var period = elements[i].getAttribute('data-period');
 		if (toRotate) {
-		  new TxtType(elements[i], JSON.parse(toRotate), period);
+			if (isMobile) {
+				// Render the first phrase as plain static text — no animation.
+				var phrases = JSON.parse(toRotate);
+				var wrap = elements[i].querySelector('.wrap');
+				if (wrap) { wrap.textContent = phrases[0]; }
+			} else {
+				new TxtType(elements[i], JSON.parse(toRotate), period);
+			}
 		}
 	}
-	var css = document.createElement("style");
-	css.type = "text/css";
-	css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
-	document.body.appendChild(css);
+
+	// Only inject the blinking-cursor style on desktop where the animation runs.
+	if (!isMobile) {
+		var css = document.createElement("style");
+		css.type = "text/css";
+		css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
+		document.body.appendChild(css);
+	}
 };

@@ -9479,11 +9479,12 @@ textarea.form-control {
     height: 100vh;
     min-height: 520px; } }
 
-/* 2. Hero: reserve space for 2 lines of typewriter text so the buttons don't
-      jump up/down as the text grows and shrinks during animation */
-@media (max-width: 991.98px) {
+/* 2. Hero: the typewriter is disabled on mobile so the h1 is static — no
+      animation means no height change and no button jumping.
+      A modest min-height just prevents a flash of zero-height on slow loads. */
+@media (max-width: 767.98px) {
   .hero-wrap .slider-text h1 {
-    min-height: 2.7em; } }
+    min-height: 1.4em; } }
 
 /* 3. Hero: smaller heading and remove excess top margin on small phones */
 @media (max-width: 575.98px) {
