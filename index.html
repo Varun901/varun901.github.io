@@ -287,9 +287,9 @@
 
           <div class="col-md-4 ftco-animate">
             <div class="project-card p-4 h-100">
-              <p class="project-overline">The Knowledge Society &nbsp;&middot;&nbsp; 2018</p>
+              <p class="project-overline">ConversationHEALTH &nbsp;&middot;&nbsp; 2018</p>
               <h3 class="project-title mb-3"><a href="https://github.com/Varun901/ConversationHEALTH" target="_blank" rel="noopener">ConversationHEALTH Bot</a></h3>
-              <p class="project-description">A mental health chatbot built in collaboration with ConversationHEALTH and The Knowledge Society, designed to inform users about mental health topics in a casual and interactive conversational format.</p>
+              <p class="project-description">A mental health chatbot built in collaboration with ConversationHEALTH, a startup, designed to inform users about mental health topics in a casual and interactive conversational format.</p>
               <ul class="project-tech list-unstyled mt-auto">
                 <li>JavaScript</li>
                 <li>Rasa</li>
@@ -407,17 +407,16 @@
   <script src="js/main.js"></script>
 
   <script>
-    // Fetch publications from ORCID and Semantic Scholar, merge by DOI, deduplicate
+    // Fetch publications from ORCID public API and render them
     (function () {
-      var ORCID_ID    = '0000-0002-1366-9331';
-      var S2_AUTHOR   = '2325281500'; // Semantic Scholar author ID
+      var ORCID_ID = '0000-0002-1366-9331';
 
       var TYPE_LABELS = {
-        'journal-article':      'Journal Article',
-        'conference-paper':     'Conference Paper',
-        'conference-abstract':  'Conference Abstract',
-        'preprint':             'Preprint',
-        'other':                'Other'
+        'journal-article':     'Journal Article',
+        'conference-paper':    'Conference Paper',
+        'conference-abstract': 'Conference Abstract',
+        'preprint':            'Preprint',
+        'other':               'Other'
       };
 
       function typeLabel(type) {
@@ -428,13 +427,15 @@
         return doi && (doi.indexOf('rs.3.rs-') !== -1 || doi.indexOf('preprints') !== -1);
       }
 
-      function normaliseDOI(doi) {
-        return doi ? doi.toLowerCase().trim() : null;
-      }
+      fetch('https://pub.orcid.org/v3.0/' + ORCID_ID + '/works', {
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        var container = document.getElementById('publications-list');
+        var loading   = document.getElementById('publications-loading');
 
-      // --- Parse ORCID response ---
-      function parseOrcid(data) {
-        return (data.group || []).map(function(group) {
+        var works = (data.group || []).map(function(group) {
           var summary = (group['work-summary'] || [])[0];
           if (!summary) return null;
 
@@ -456,54 +457,8 @@
           });
 
           if (isPreprintDOI(doi)) type = 'preprint';
-          return { title: title, journal: journal, year: year, type: type, doiUrl: doiUrl, doi: normaliseDOI(doi) };
+          return { title: title, journal: journal, year: year, type: type, doiUrl: doiUrl };
         }).filter(Boolean);
-      }
-
-      // --- Parse Semantic Scholar response ---
-      function parseS2(data) {
-        return (data.data || []).map(function(paper) {
-          var doi    = (paper.externalIds && paper.externalIds.DOI) ? paper.externalIds.DOI : null;
-          var doiUrl = doi ? 'https://doi.org/' + doi : null;
-          var type   = 'journal-article';
-          if (isPreprintDOI(doi)) type = 'preprint';
-          return {
-            title:   paper.title || 'Untitled',
-            journal: paper.venue || null,
-            year:    paper.year ? String(paper.year) : null,
-            type:    type,
-            doiUrl:  doiUrl,
-            doi:     normaliseDOI(doi)
-          };
-        }).filter(Boolean);
-      }
-
-      // --- Merge: ORCID is authoritative; S2 fills in anything missing by DOI ---
-      function merge(orcidWorks, s2Works) {
-        var seen = {};
-        var merged = [];
-
-        orcidWorks.forEach(function(w) {
-          var key = w.doi || w.title.toLowerCase();
-          seen[key] = true;
-          merged.push(w);
-        });
-
-        s2Works.forEach(function(w) {
-          var key = w.doi || w.title.toLowerCase();
-          if (!seen[key]) {
-            seen[key] = true;
-            merged.push(w);
-          }
-        });
-
-        return merged;
-      }
-
-      // --- Render ---
-      function render(works) {
-        var container = document.getElementById('publications-list');
-        var loading   = document.getElementById('publications-loading');
 
         works.sort(function(a, b) {
           return (parseInt(b.year) || 0) - (parseInt(a.year) || 0);
@@ -541,27 +496,11 @@
         html += '</div>';
 
         container.innerHTML = html;
-      }
-
-      // --- Fetch both sources in parallel ---
-      var orcidFetch = fetch('https://pub.orcid.org/v3.0/' + ORCID_ID + '/works', {
-        headers: { 'Accept': 'application/json' }
-      }).then(function(r) { return r.json(); }).then(parseOrcid).catch(function() { return []; });
-
-      var s2Fetch = fetch(
-        'https://api.semanticscholar.org/graph/v1/author/' + S2_AUTHOR +
-        '/papers?fields=title,year,venue,externalIds&limit=50'
-      ).then(function(r) { return r.json(); }).then(parseS2).catch(function() { return []; });
-
-      Promise.all([orcidFetch, s2Fetch]).then(function(results) {
-        var works = merge(results[0], results[1]);
-        if (works.length === 0) {
-          document.getElementById('publications-loading').innerHTML =
-            '<p>Could not load publications. Visit <a href="https://orcid.org/' + ORCID_ID +
-            '" target="_blank" rel="noopener">ORCID</a> to view the full list.</p>';
-          return;
-        }
-        render(works);
+      })
+      .catch(function() {
+        document.getElementById('publications-loading').innerHTML =
+          '<p>Could not load publications. Visit <a href="https://orcid.org/' + ORCID_ID +
+          '" target="_blank" rel="noopener">ORCID</a> to view the full list.</p>';
       });
     })();
   </script>
