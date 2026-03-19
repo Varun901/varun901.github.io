@@ -8184,9 +8184,10 @@ h1, h2, h3, h4, h5,
       padding-left: 15px;
       padding-right: 15px; } }
   .ftco-navbar-light .container {
-    width: 1110px;
+    width: 100%;
+    max-width: 1110px;
     margin: 0 auto;
-    padding: 0; }
+    padding: 0 15px; }
   .ftco-navbar-light .navbar-brand {
     color: #000000;
     padding-top: .7rem;
@@ -9463,3 +9464,57 @@ textarea.form-control {
 .project-award {
   color: #e08a00;
   font-weight: 600; }
+
+/* ============================================================
+   Mobile Responsiveness Fixes
+   ============================================================ */
+
+/* 1. Hero: fix slider-text height so it matches the JS-set viewport height on mobile,
+      preventing the hero content from overflowing into the next section. */
+@media (max-width: 991.98px) {
+  .hero-wrap .slider-text {
+    height: 100vh;
+    min-height: 520px; }
+  .hero-wrap .slider-text .one-forth {
+    height: 100vh;
+    min-height: 520px; } }
+
+/* 2. Hero: smaller heading and remove the excess top margin on small phones */
+@media (max-width: 575.98px) {
+  .hero-wrap .slider-text h1 {
+    font-size: 28px; }
+  .hero-wrap .slider-text .text {
+    margin-top: 0 !important; } }
+
+/* 3. Hero: make the CTA buttons wrap cleanly and stay centered on narrow screens */
+@media (max-width: 767.98px) {
+  .hero-wrap .slider-text .text > p:first-of-type {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem; }
+  .hero-wrap .slider-text .text > p:first-of-type .btn {
+    margin-left: 0;
+    margin-right: 0; } }
+
+/* 4. Footer: add vertical breathing room between stacked columns on mobile */
+@media (max-width: 767.98px) {
+  .ftco-footer .col-md {
+    margin-bottom: 2.5rem; } }
+
+/* 5. Content sections: ensure horizontal padding on very narrow screens */
+@media (max-width: 575.98px) {
+  .ftco-about .container,
+  .ftco-section .container,
+  .contact-section .container,
+  .ftco-footer .container {
+    padding-left: 20px;
+    padding-right: 20px; } }
+
+/* 6. Navbar: ensure the toggler "Menu" button is visible and styled */
+@media (max-width: 991.98px) {
+  .navbar-toggler {
+    font-size: 14px;
+    padding: 6px 10px; }
+  .ftco-navbar-light .navbar-collapse {
+    padding-top: 0.5rem; } }
