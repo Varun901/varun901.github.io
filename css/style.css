@@ -448,9 +448,10 @@ pre {
 
 .container {
   width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  padding: 4em 0;
+  padding-top: 4em;
+  padding-bottom: 4em;
+  padding-right: 1rem;
+  padding-left: 1rem;
   margin-right: auto;
   margin-left: auto; }
   @media (min-width: 576px) {
@@ -9469,8 +9470,7 @@ textarea.form-control {
    Mobile Responsiveness Fixes
    ============================================================ */
 
-/* 1. Hero: fix slider-text height so it matches the JS-set viewport height on mobile,
-      preventing the hero content from overflowing into the next section. */
+/* 1. Hero: align slider-text height with the JS-set viewport height on mobile */
 @media (max-width: 991.98px) {
   .hero-wrap .slider-text {
     height: 100vh;
@@ -9479,14 +9479,20 @@ textarea.form-control {
     height: 100vh;
     min-height: 520px; } }
 
-/* 2. Hero: smaller heading and remove the excess top margin on small phones */
+/* 2. Hero: reserve space for 2 lines of typewriter text so the buttons don't
+      jump up/down as the text grows and shrinks during animation */
+@media (max-width: 991.98px) {
+  .hero-wrap .slider-text h1 {
+    min-height: 2.7em; } }
+
+/* 3. Hero: smaller heading and remove excess top margin on small phones */
 @media (max-width: 575.98px) {
   .hero-wrap .slider-text h1 {
     font-size: 28px; }
   .hero-wrap .slider-text .text {
     margin-top: 0 !important; } }
 
-/* 3. Hero: make the CTA buttons wrap cleanly and stay centered on narrow screens */
+/* 4. Hero: make CTA buttons wrap cleanly and stay centred on narrow screens */
 @media (max-width: 767.98px) {
   .hero-wrap .slider-text .text > p:first-of-type {
     display: flex;
@@ -9497,21 +9503,19 @@ textarea.form-control {
     margin-left: 0;
     margin-right: 0; } }
 
-/* 4. Footer: add vertical breathing room between stacked columns on mobile */
+/* 5. All content containers: bump side padding on mobile so text never runs
+      to the screen edge. Overrides the base 1rem set on .container. */
+@media (max-width: 767.98px) {
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem; } }
+
+/* 6. Footer: vertical breathing room between stacked columns on mobile */
 @media (max-width: 767.98px) {
   .ftco-footer .col-md {
     margin-bottom: 2.5rem; } }
 
-/* 5. Content sections: ensure horizontal padding on very narrow screens */
-@media (max-width: 575.98px) {
-  .ftco-about .container,
-  .ftco-section .container,
-  .contact-section .container,
-  .ftco-footer .container {
-    padding-left: 20px;
-    padding-right: 20px; } }
-
-/* 6. Navbar: ensure the toggler "Menu" button is visible and styled */
+/* 7. Navbar: toggler button tap target + collapse spacing */
 @media (max-width: 991.98px) {
   .navbar-toggler {
     font-size: 14px;
