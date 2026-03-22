@@ -9470,6 +9470,13 @@ textarea.form-control {
   color: #e08a00;
   font-weight: 600; }
 
+/* Show-more toggle: hide extra project cards on desktop by default */
+@media (min-width: 768px) {
+  .project-extra {
+    display: none; }
+  .project-extra.show {
+    display: block; } }
+
 /* ============================================================
    Mobile Responsiveness Fixes
    ============================================================ */

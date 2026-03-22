@@ -171,8 +171,25 @@
           <div class="col-md-4 ftco-animate">
             <div class="project-card p-4 h-100">
               <p class="project-overline">Personal Project &nbsp;&middot;&nbsp; 2026</p>
+              <h3 class="project-title mb-3"><a href="https://github.com/Varun901/TaskList-Discord-Bot" target="_blank" rel="noopener">Discord Task Bot</a></h3>
+              <p class="project-description">A Discord bot that connects each server member to their own Google Calendar or Notion database. Posts a personalized daily task digest every morning, supports manual task entry, reminders with snooze, and a /nudge command to publicly prompt teammates. Hosted on Oracle Cloud via systemd or Docker.</p>
+              <ul class="project-tech list-unstyled mt-auto">
+                <li>Python</li>
+                <li>discord.py</li>
+                <li>SQLite</li>
+                <li>Docker</li>
+              </ul>
+              <div class="project-links mt-3">
+                <a href="https://github.com/Varun901/TaskList-Discord-Bot" target="_blank" rel="noopener" title="GitHub"><span class="fa-brands fa-github"></span></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 ftco-animate">
+            <div class="project-card p-4 h-100">
+              <p class="project-overline">Personal Project &nbsp;&middot;&nbsp; 2026</p>
               <h3 class="project-title mb-3">Injury Scout</h3>
-              <p class="project-description">An automatically updated database tracking player injuries across the Top 5 UEFA leagues, MLB, and NFL. Continuously analyzes injury reports to determine trends in injury type, severity, and return-to-play (RTP) outcomes, providing a structured foundation for cross-sport injury epidemiology.</p>
+              <p class="project-description">An automatically updated database tracking player injuries across the Top 5 UEFA leagues, MLB, and NHL. Continuously analyzes injury reports to determine trends in injury type, severity, and return-to-play (RTP) outcomes, providing a structured foundation for cross-sport injury epidemiology.</p>
               <ul class="project-tech list-unstyled mt-auto">
                 <li>Python</li>
                 <li>Automated Pipeline</li>
@@ -244,7 +261,7 @@
             </div>
           </div>
 
-          <div class="col-md-4 ftco-animate">
+          <div class="col-md-4 ftco-animate project-extra">
             <div class="project-card p-4 h-100">
               <p class="project-overline">McMaster University &nbsp;&middot;&nbsp; March 2019</p>
               <h3 class="project-title mb-3"><a href="https://github.com/Varun901/Cardio-Safe" target="_blank" rel="noopener">Cardio-Safe</a></h3>
@@ -261,7 +278,7 @@
             </div>
           </div>
 
-          <div class="col-md-4 ftco-animate">
+          <div class="col-md-4 ftco-animate project-extra">
             <div class="project-card p-4 h-100">
               <p class="project-overline">Hack Western V &nbsp;&middot;&nbsp; November 2018</p>
               <h3 class="project-title mb-3"><a href="https://github.com/Varun901/FuelPlan" target="_blank" rel="noopener">FuelPlan</a></h3>
@@ -277,7 +294,7 @@
             </div>
           </div>
 
-          <div class="col-md-4 ftco-animate">
+          <div class="col-md-4 ftco-animate project-extra">
             <div class="project-card p-4 h-100">
               <p class="project-overline">Hackathon &nbsp;&middot;&nbsp; 2019 &nbsp;&middot;&nbsp; <span class="project-award"><span class="fa-solid fa-trophy"></span> Devpost People's Choice Award</span></p>
               <h3 class="project-title mb-3"><a href="https://github.com/Varun901/Commuze" target="_blank" rel="noopener">Commuze</a></h3>
@@ -293,7 +310,7 @@
             </div>
           </div>
 
-          <div class="col-md-4 ftco-animate">
+          <div class="col-md-4 ftco-animate project-extra">
             <div class="project-card p-4 h-100">
               <p class="project-overline">ConversationHEALTH &nbsp;&middot;&nbsp; 2018</p>
               <h3 class="project-title mb-3"><a href="https://github.com/Varun901/ConversationHEALTH" target="_blank" rel="noopener">ConversationHEALTH Bot</a></h3>
@@ -310,6 +327,13 @@
           </div>
 
         </div>
+
+        <div class="row mt-3" id="projects-toggle-row">
+          <div class="col-12 text-center d-none d-md-block">
+            <button id="projects-toggle-btn" class="btn btn-outline-secondary px-4" type="button">Show more projects</button>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -408,6 +432,21 @@
   <script src="js/jquery.easing.1.3.js"></script>
   <script src="js/jquery.waypoints.min.js"></script>
   <script src="js/main.js"></script>
+
+  <script>
+    // Projects: show/hide extra cards on desktop
+    (function () {
+      var btn = document.getElementById('projects-toggle-btn');
+      if (!btn) return;
+      var extras = document.querySelectorAll('.project-extra');
+      var expanded = false;
+      btn.addEventListener('click', function () {
+        expanded = !expanded;
+        extras.forEach(function (el) { el.classList.toggle('show', expanded); });
+        btn.textContent = expanded ? 'Show fewer projects' : 'Show more projects';
+      });
+    })();
+  </script>
 
   <script>
     // Fetch publications from ORCID public API and render them
