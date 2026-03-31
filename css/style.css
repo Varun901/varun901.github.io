@@ -9643,3 +9643,47 @@ textarea.form-control {
     width: 100%;
     font-size: 0.95rem;
     padding: 0.85rem 1.5rem; } }
+
+/* ============================================================
+   Contact Form — Send Button
+   ============================================================ */
+.btn-send {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  font-size: 0.88rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 0.85rem 2.25rem;
+  background-color: #17b978;
+  color: #fff;
+  border: 2px solid #17b978;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color .25s ease, box-shadow .25s ease, transform .15s ease;
+  line-height: 1; }
+
+.btn-send:hover,
+.btn-send:focus {
+  background-color: #13a067;
+  border-color: #13a067;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 6px 22px rgba(23, 185, 120, 0.35);
+  transform: translateY(-2px);
+  outline: none; }
+
+.btn-send i {
+  font-size: 0.85rem;
+  transition: transform .22s ease; }
+
+.btn-send:hover i {
+  transform: translateX(3px) rotate(-20deg); }
+
+@media (max-width: 767.98px) {
+  .btn-send {
+    display: flex;
+    width: 100%;
+    justify-content: center; } }
